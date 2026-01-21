@@ -1,0 +1,10 @@
+repositories:
+  ros2_ws/src/x500_nav3d:
+    type: git
+    url: https://github.com/saviodp7/x500_nav3d.git
+    version: main
+
+  ros2_ws/src/nav3d:
+    type: git
+    url: https://github.com/saviodp7/nav3d.git
+    version: main
