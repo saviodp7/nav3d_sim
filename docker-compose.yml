@@ -1,0 +1,19 @@
+services:
+  nav3d:
+    container_name: nav3d-cnt
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    image: nav3d-img
+    privileged: true
+    network_mode: host
+    environment:
+      - DISPLAY=${DISPLAY}
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro
+      - /dev:/dev
+      - ./PX4-Autopilot:/root/PX4-Autopilot:rw
+      - ./ros2_ws:/root/ros2_ws:rw
+    stdin_open: true
+    tty: true
+    command: bash
