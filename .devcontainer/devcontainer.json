@@ -1,0 +1,58 @@
+{
+  "name": "nav3d_sim",
+  "build": {
+    "dockerfile": "../docker/Dockerfile",
+    "context": ".."
+  },
+  "remoteUser": "root",
+  "workspaceFolder": "/root/nav3d_sim",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/root/nav3d_sim,type=bind,consistency=cached",
+  "runArgs": [
+    "--privileged",
+    "--network=host",
+    "--ipc=host"
+  ],
+  "mounts": [
+    "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,readonly",
+    "source=/dev,target=/dev,type=bind"
+  ],
+  "containerEnv": {
+    "DISPLAY": "${localEnv:DISPLAY}",
+    "QT_X11_NO_MITSHM": "1",
+    "RMW_IMPLEMENTATION": "rmw_cyclonedds_cpp"
+  },
+  "initializeCommand": "bash -lc 'command -v xhost >/dev/null 2>&1 && xhost +local:root || true; bash ${localWorkspaceFolder}/scripts/bootstrap.sh'",
+  "postStartCommand": "bash -lc 'ln -snf /root/nav3d_sim/ros2_ws /root/ros2_ws; ln -snf /root/nav3d_sim/PX4-Autopilot /root/PX4-Autopilot; true'",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Ranch-Hand-Robotics.rde-ros-2",
+        "Ranch-Hand-Robotics.urdf-editor",
+        "ms-vscode.cpptools",
+        "ms-vscode.cmake-tools",
+        "twxs.cmake",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "redhat.vscode-yaml",
+        "dotjoshjohnson.xml",
+        "ms-azuretools.vscode-docker",
+        "eamodio.gitlens",
+        "usernamehw.errorlens",
+        "xaver.clang-format",
+        "ms-python.black-formatter",
+        "charliermarsh.ruff",
+        "cheshirekow.cmake-format"
+      ],
+      "settings": {
+        "cmake.configureOnOpen": false,
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "files.watcherExclude": {
+          "**/PX4-Autopilot/**": true
+        },
+        "search.exclude": {
+          "**/PX4-Autopilot/**": true
+        }
+      }
+    }
+  }
+}
