@@ -1,0 +1,8 @@
+[submodule "ros2_ws/src/nav3d"]
+	path = ros2_ws/src/nav3d
+	url = https://github.com/saviodp7/nav3d.git
+	branch = main
+[submodule "ros2_ws/src/x500_nav3d"]
+	path = ros2_ws/src/x500_nav3d
+	url = https://github.com/saviodp7/x500_nav3d.git
+	branch = main
