@@ -1,0 +1,54 @@
+{
+    "ROS2.distro": "humble",
+    "[c]": {
+        "editor.defaultFormatter": "xaver.clang-format",
+        "editor.formatOnSave": true
+    },
+    "[cpp]": {
+        "editor.defaultFormatter": "xaver.clang-format",
+        "editor.formatOnSave": true
+    },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true
+    },
+    "[cmake]": {
+        "editor.defaultFormatter": "cheshirekow.cmake-format",
+        "editor.formatOnSave": true
+    },
+    "python.autoComplete.extraPaths": [
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.exclude": [
+        "**/PX4-Autopilot/**",
+        "**/build/**",
+        "**/install/**",
+        "**/log/**"
+    ],
+    "C_Cpp.files.exclude": {
+        "**/PX4-Autopilot/**": true,
+        "**/build/**": true,
+        "**/install/**": true,
+        "**/log/**": true
+    },
+    "C_Cpp.exclusionPolicy": "checkFilesAndFolders",
+    "C_Cpp.workspaceParsingPriority": "low",
+    "C_Cpp.default.browse.limitSymbolsToIncludedHeaders": true,
+    "files.watcherExclude": {
+        "**/PX4-Autopilot/**": true,
+        "**/build/**": true,
+        "**/install/**": true,
+        "**/log/**": true
+    },
+    "search.exclude": {
+        "**/PX4-Autopilot/**": true,
+        "**/build/**": true,
+        "**/install/**": true,
+        "**/log/**": true
+    }
+}

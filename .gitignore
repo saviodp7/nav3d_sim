@@ -7,4 +7,5 @@ ros2_ws/log/
 # PX4
 PX4-Autopilot/
 
-.vscode/
+# VS Code C/C++ IntelliSense database
+.vscode/browse.vc.db*
