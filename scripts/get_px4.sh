@@ -6,7 +6,7 @@ PX4_DIR="${ROOT_DIR}/PX4-Autopilot"
 PX4_MSGS_DIR="${ROOT_DIR}/ros2_ws/src/px4_msgs"
 
 PX4_BRANCH="${PX4_BRANCH:-release/1.14}"
-PX4_MSGS_BRANCH="${PX4_MSGS_BRANCH:-main}"
+PX4_MSGS_BRANCH="${PX4_MSGS_BRANCH:-${PX4_BRANCH}}"
 
 PX4_URL="${PX4_URL:-https://github.com/PX4/PX4-Autopilot.git}"
 PX4_MSGS_URL="${PX4_MSGS_URL:-https://github.com/PX4/px4_msgs.git}"
