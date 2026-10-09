@@ -1,28 +1,19 @@
 {
   "name": "nav3d_sim",
-  "build": {
-    "dockerfile": "../docker/Dockerfile",
-    "context": ".."
-  },
+  "dockerComposeFile": [
+    "docker-compose.base.yml",
+    "docker-compose.gpu.generated.yml"
+  ],
+  "service": "nav3d",
+  "shutdownAction": "stopCompose",
+  "overrideCommand": true,
   "remoteUser": "root",
-  "workspaceFolder": "/root/nav3d_sim",
-  "workspaceMount": "source=${localWorkspaceFolder},target=/root/nav3d_sim,type=bind,consistency=cached",
-  "runArgs": [
-    "--privileged",
-    "--network=host",
-    "--ipc=host"
-  ],
-  "mounts": [
-    "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,readonly",
-    "source=/dev,target=/dev,type=bind"
-  ],
-  "containerEnv": {
-    "DISPLAY": "${localEnv:DISPLAY}",
-    "QT_X11_NO_MITSHM": "1",
-    "RMW_IMPLEMENTATION": "rmw_cyclonedds_cpp"
+  "workspaceFolder": "/workspaces/nav3d_sim",
+  "hostRequirements": {
+    "gpu": "optional"
   },
-  "initializeCommand": "bash -lc 'command -v xhost >/dev/null 2>&1 && xhost +local:root || true; bash ${localWorkspaceFolder}/scripts/bootstrap.sh'",
-  "postStartCommand": "bash -lc 'ln -snf /root/nav3d_sim/ros2_ws /root/ros2_ws; ln -snf /root/nav3d_sim/PX4-Autopilot /root/PX4-Autopilot; true'",
+  "initializeCommand": "bash ${localWorkspaceFolder}/.devcontainer/initialize.sh",
+  "postStartCommand": "bash -lc 'ln -snf /workspaces/nav3d_sim/ros2_ws /root/ros2_ws; ln -snf /workspaces/nav3d_sim/PX4-Autopilot /root/PX4-Autopilot; true'",
   "customizations": {
     "vscode": {
       "extensions": [

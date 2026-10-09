@@ -22,6 +22,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     clang-format \
     clang-tidy \
+    libegl1 \
+    libgl1 \
+    libglvnd0 \
+    libglx0 \
+    libvulkan1 \
+    mesa-utils \
+    vulkan-tools \
     && locale-gen en_US en_US.UTF-8 \
     && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 \
     && add-apt-repository universe \
@@ -93,5 +100,8 @@ RUN echo "source /opt/ros/humble/setup.bash" >> /root/.bashrc \
     && echo "if [ -f /root/ros2_ws/install/setup.bash ]; then source /root/ros2_ws/install/setup.bash; fi" >> /root/.bashrc
 
 RUN git config --global --add safe.directory '*'
+
+COPY scripts/check_gpu.sh /usr/local/bin/check-gpu
+RUN chmod 0755 /usr/local/bin/check-gpu
 
 CMD ["bash"]

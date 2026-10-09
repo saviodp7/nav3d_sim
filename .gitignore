@@ -7,5 +7,9 @@ ros2_ws/log/
 # PX4
 PX4-Autopilot/
 
-# VS Code C/C++ IntelliSense database
-.vscode/browse.vc.db*
+.vscode/
+
+# Host-specific Dev Container GPU selection
+.devcontainer/docker-compose.gpu.generated.yml
+.devcontainer/docker-compose.gpu.generated.yml.tmp.*
+.devcontainer/.docker.xauth
