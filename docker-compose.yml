@@ -7,10 +7,14 @@ services:
     image: nav3d-img
     privileged: true
     network_mode: host
+    ipc: host
     environment:
       - DISPLAY=${DISPLAY}
+      - XAUTHORITY=/tmp/.docker.xauth
+      - QT_X11_NO_MITSHM=1
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:ro
+      - ${XAUTHORITY:-/dev/null}:/tmp/.docker.xauth:ro
       - /dev:/dev
       - ./PX4-Autopilot:/root/PX4-Autopilot:rw
       - ./ros2_ws:/root/ros2_ws:rw

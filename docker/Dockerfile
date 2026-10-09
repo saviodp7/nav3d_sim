@@ -73,6 +73,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libasio-dev \
     && rm -rf /var/lib/apt/lists/*
 
+# Work around the ROS Humble BehaviorTree.CPP 4.9.1 package exporting the
+# non-multiarch library path while installing the library below lib/<multiarch>.
+RUN multiarch="$(dpkg-architecture -qDEB_HOST_MULTIARCH)" \
+    && test -e "/opt/ros/humble/lib/${multiarch}/libbehaviortree_cpp.so" \
+    && ln -snf "${multiarch}/libbehaviortree_cpp.so" \
+        /opt/ros/humble/lib/libbehaviortree_cpp.so
+
 RUN pip3 install --no-cache-dir \
     empy==3.3.4 \
     pyros-genmsg \
