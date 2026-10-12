@@ -47,10 +47,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     gz-garden \
     ros-humble-ros-gzgarden \
     ros-humble-behaviortree-cpp \
+    ros-humble-geographic-msgs \
     ros-humble-joint-state-publisher \
-    ros-humble-mavros \
-    ros-humble-mavros-extras \
-    ros-humble-mavros-msgs \
     ros-humble-moveit \
     ros-humble-moveit-hybrid-planning \
     ros-humble-moveit-ros-occupancy-map-monitor \
@@ -73,13 +71,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libasio-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Work around the ROS Humble BehaviorTree.CPP 4.9.1 package exporting the
-# non-multiarch library path while installing the library below lib/<multiarch>.
-RUN multiarch="$(dpkg-architecture -qDEB_HOST_MULTIARCH)" \
-    && test -e "/opt/ros/humble/lib/${multiarch}/libbehaviortree_cpp.so" \
-    && ln -snf "${multiarch}/libbehaviortree_cpp.so" \
-        /opt/ros/humble/lib/libbehaviortree_cpp.so
-
 RUN pip3 install --no-cache-dir \
     empy==3.3.4 \
     pyros-genmsg \
@@ -87,10 +78,6 @@ RUN pip3 install --no-cache-dir \
     isort \
     ruff \
     cmakelang
-
-RUN wget -q https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh \
-    && bash ./install_geographiclib_datasets.sh \
-    && rm -f ./install_geographiclib_datasets.sh
 
 RUN git clone --depth 1 https://github.com/eProsima/Micro-XRCE-DDS-Agent.git \
     && cd Micro-XRCE-DDS-Agent \
